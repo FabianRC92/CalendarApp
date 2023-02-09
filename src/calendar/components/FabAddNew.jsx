@@ -4,17 +4,15 @@ import { useCalendarStore, useUIStore } from "../../hooks";
 export const FabAddNew = () => {
   const { openDateModal } = useUIStore();
   const { setActiveEvent } = useCalendarStore();
-  
 
   const onOpenModal = () => {
     setActiveEvent({
-      _id: "",
       title: "",
-      description: "",
+      notes: "",
       start: new Date(),
       end: addHours(new Date(), 2),
       bgColor: "#fafafa",
-    })
+    });
     openDateModal();
   };
 
