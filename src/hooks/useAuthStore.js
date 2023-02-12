@@ -34,6 +34,7 @@ export const useAuthStore = () => {
         email: registerEmail,
       });
       localStorage.setItem("token", data.token);
+      dispatch( onLogin({ name: data.name, uid: data.uid }) );
     } catch (error) {
       dispatch(
         onLogout(

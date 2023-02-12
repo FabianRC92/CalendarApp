@@ -10,18 +10,16 @@ export const CalendarPage = () => {
   const { openDateModal } = useUIStore();
   const { user } = useAuthStore();
   const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
+  // const [myEvent, setMyEvent] = useState(false);
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
 
-  const [myEvent, setMyEvent] = useState(true);
-
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  const eventStyleGetter = (event) => {
     const isMyEvent =
-      user.uid === event.user._id || user.uid === event.user._id;
+      user.uid === event.user.id || user.uid === event.user._id;
 
-    // setMyEvent(isMyEvent)
     const style = {
       backgroundColor: isMyEvent ? "#347cf7" : "#465660",
       opacity: 0.8,
@@ -31,8 +29,11 @@ export const CalendarPage = () => {
     return { style };
   };
 
-  const onDoubleClick = () => {
-    if (myEvent) openDateModal();
+  const onDoubleClick = (event) => {
+    const isMyEvent =
+      user.uid === event.user.id || user.uid === event.user._id;
+
+    if (isMyEvent) openDateModal();
   };
 
   const onSelect = (event) => {

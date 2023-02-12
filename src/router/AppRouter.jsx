@@ -12,7 +12,7 @@ export const AppRouter = () => {
   }, []);
 
   if (status === "checkin") {
-    return <h3>Cargando...</h3>;
+    return <h3 aria-label="status">Cargando...</h3>;
   }
 
   return (
